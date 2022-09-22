@@ -1,4 +1,5 @@
 package org.utd.sortinganalysis;
+
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,39 +37,51 @@ public class Main {
          *          * Total time
         */
         final int ARRAY_SIZE = 3;
-        ArrayList<Integer> list = new ArrayList<>();
-
-        //populate list randomly
-        for(int i = 0; i < ARRAY_SIZE; i++)
-        {
-            int randomNum = ThreadLocalRandom.current().nextInt(0, 101); //nextInt(min, max)
-            list.add(randomNum); //adds a random value
-        }
+        int[] list = new int[ARRAY_SIZE];
 
         prIntList(list);
 
-        //stack overflow going crazy
-        //converting list to array; have to use lambda function since object to primitive
-        int[] sortit = list.stream().mapToInt(t -> t).toArray();
-        MergeSort.mergeSort(sortit);
+        //populate list randomly
+        populate(list, 0);
 
-        //following sort, add elements back into ArrayList
-        list.clear();
-        for(int i = 0; i < sortit.length; i++)
-        {
-            list.add(sortit[i]);
-        }
+        prIntList(list);
+
+        //call sort
+        MergeSort.mergeSort(list);
 
         prIntList(list);
     }
 
-    public static void prIntList(ArrayList<Integer> coll)
+    public static void prIntList(int[] coll)
     {
         for(int x: coll)
         {
             System.out.println(x);
         }
         System.out.println("------------");
+    }
+
+    public static void populate(int[] list, int which)
+    {
+        //array passed by reference
+        switch(which){
+            case(1)://In Order
+                break;
+            case(2)://Reverse Order
+                break;
+            case(3)://Random Order
+                break;
+            case(4)://Random Order
+                for(int i = 0; i < list.length; i++)
+                {
+                    int randomNum = ThreadLocalRandom.current().nextInt(0, 101); //nextInt(min, max)
+                    list[i] = randomNum;
+                }
+                break;
+            default:
+                break;
+
+        }
     }
 
 
