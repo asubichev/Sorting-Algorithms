@@ -1,5 +1,8 @@
+package org.utd.sortinganalysis;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class Main {
     public static void main(String[] args) 
@@ -45,8 +48,8 @@ public class Main {
         prIntList(list);
 
         //stack overflow going crazy
-        //converting list to array
-        int[] sortit = list.stream().filter(t -> t != null).mapToInt(t -> t).toArray();
+        //converting list to array; have to use lambda function since object to primitive
+        int[] sortit = list.stream().mapToInt(t -> t).toArray();
         MergeSort.mergeSort(sortit);
 
         //following sort, add elements back into ArrayList
