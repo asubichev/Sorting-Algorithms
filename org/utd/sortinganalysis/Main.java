@@ -1,6 +1,5 @@
 package org.utd.sortinganalysis;
 
-import java.lang.System.Logger;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 
@@ -8,20 +7,6 @@ public class Main {
     public static void main(String[] args) 
     {
         /**TODO:
-         * Split populate into four functions:
-         *          * In Order
-         *          * Reverse Order
-         *          * Almost Order (70-80% in order)
-         *          * Random Order <--currently hardcoded
-         * 
-         * Create functions to call different sorts
-         *          * Insertion
-         *          * Selection
-         *          * Quick
-         *          * Merge
-         *          * Heap
-         *          * Radix
-         * 
          * Have the sorts return comparisons and movements
          * 
          * Implement timing function: http://www.baeldung.com/java-measure-elapsed-time
