@@ -23,15 +23,16 @@ public class Main {
          *          * Total time
         */
         final int ARRAY_SIZE = 20;
-        int[] list = new int[ARRAY_SIZE];
+        //int[] list = new int[ARRAY_SIZE];
+        int[] list = {5,7,9,1,2};
 
         //populate list randomly
-        populate(list, 3);
+        //populate(list, 3);
 
         prIntList(list);
 
         //call sort
-        sort(list, 5);
+        int[] oo = sort(list, 1);
 
         prIntList(list);
     }
@@ -97,7 +98,7 @@ public class Main {
         switch(which)
         {
             case(1):
-                InsertionSort.insertionSort(list);
+                stat = InsertionSort.insertionSort(list);
                 break;
             case(2):
                 SelectionSort.selectionSort(list);
