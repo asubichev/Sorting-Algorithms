@@ -22,6 +22,8 @@ public class Main {
          *          * Heap
          *          * Radix
          * 
+         * Have the sorts return comparisons and movements
+         * 
          * Implement timing function: http://www.baeldung.com/java-measure-elapsed-time
          * Increase sizes of lists from 3-5 to 5-15k
          * Implement user input to control:
