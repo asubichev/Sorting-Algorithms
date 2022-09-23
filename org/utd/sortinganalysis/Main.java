@@ -1,9 +1,6 @@
 package org.utd.sortinganalysis;
 
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class Main {
     public static void main(String[] args) 
@@ -42,7 +39,7 @@ public class Main {
         prIntList(list);
 
         //populate list randomly
-        populate(list, 0);
+        populate(list, 1);
 
         prIntList(list);
 
@@ -66,8 +63,21 @@ public class Main {
         //array passed by reference
         switch(which){
             case(1)://In Order
+                for(int i = 0; i < list.length; i++)
+                {
+                    int randomNum = ThreadLocalRandom.current().nextInt(0,17);
+                    if( i == 0 ){ list[i] = randomNum; }
+                    else{ list[i] = list[i-1] + randomNum; }
+                }
                 break;
-            case(2)://Reverse Order
+            case(2)://Reverse Order//TODO: get this straight
+                int randStart = ThreadLocalRandom.current().nextInt();//TODO:start around 100,000 for real code
+                for(int i = 0; i < list.length; i++)
+                {
+                    int randomNum = ThreadLocalRandom.current().nextInt(0,17);
+                    if( i == 0 ){ list[i] = randStart - randomNum; }
+                    else{ list[i] = list[i-1] - randomNum; }
+                }
                 break;
             case(3)://Almost Order
                 break;
