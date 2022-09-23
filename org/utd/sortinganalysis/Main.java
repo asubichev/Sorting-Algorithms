@@ -2,6 +2,7 @@ package org.utd.sortinganalysis;
 
 import java.lang.System.Logger;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) 
@@ -20,6 +21,8 @@ public class Main {
          *          * Merge
          *          * Heap
          *          * Radix
+         * 
+         * Have the sorts return comparisons and movements
          * 
          * Implement timing function: http://www.baeldung.com/java-measure-elapsed-time
          * Increase sizes of lists from 3-5 to 5-15k
@@ -43,7 +46,7 @@ public class Main {
         prIntList(list);
 
         //call sort
-        MergeSort.mergeSort(list);
+        sort(list, 5);
 
         prIntList(list);
     }
@@ -82,7 +85,6 @@ public class Main {
                 break;
             case(3)://Almost Order
                 populate(list, 1);//populates in order first
-                prIntList(list);
                 for(int i = 0; i < list.length; i++)
                 {
                     int randomNum = ThreadLocalRandom.current().nextInt(0,101);
@@ -100,9 +102,38 @@ public class Main {
                 }
                 break;
             default:
-                throw new IllegalArgumentException(which + " is not a valid sort");
+                throw new IllegalArgumentException(which + " is not associated with a valid sort");
         }
     }
 
-
+    public static void sort(int[] list, int which)
+    {
+        switch(which)
+        {
+            case(1):
+                InsertionSort.insertionSort(list);
+                break;
+            case(2):
+                SelectionSort.selectionSort(list);
+                break;
+            case(3):
+                QuickSort.quickSort(list);
+                break;
+            case(4):
+                MergeSort.mergeSort(list);
+                break;
+            case(5):
+                Integer[] boxing = Arrays.stream(list).boxed().toArray(Integer[]::new);
+                HeapSort.heapSort(boxing);
+                for(int i = 0; i < boxing.length; i++) { list[i] = boxing[i]; }
+                //couldn't really figure out a better approach, but in the end it's still O(N) so w/e
+                //System.arraycopy(boxing, 0, list, 0, boxing.length);
+                break;
+            case(6):
+                RadixSort.radixsort(list, 0);
+                break;
+            default:
+                throw new IllegalArgumentException(which + "is not associated with a valid sort");
+        }
+    }
 }

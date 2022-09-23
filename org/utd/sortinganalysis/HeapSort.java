@@ -16,11 +16,11 @@ public class HeapSort {
 	
 	
  	/**	A test method */
-	public static void main(String[] args) {
-		Integer[] list = {-44, -5, -3, 3, 3, 1, -4, 0, 1, 2, 4, 5, 53};
-		heapSort(list);
-		for(int i = 0; i < list.length; i++)
-			System.out.println(list[i] + " ");
-	}
+	// public static void main(String[] args) {
+	// 	Integer[] list = {-44, -5, -3, 3, 3, 1, -4, 0, 1, 2, 4, 5, 53};
+	// 	heapSort(list);
+	// 	for(int i = 0; i < list.length; i++)
+	// 		System.out.println(list[i] + " ");
+	// }
 	
 }
