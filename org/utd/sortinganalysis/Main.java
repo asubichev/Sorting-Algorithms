@@ -1,5 +1,6 @@
 package org.utd.sortinganalysis;
 
+import java.lang.System.Logger;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
@@ -33,13 +34,11 @@ public class Main {
          *          * Movements
          *          * Total time
         */
-        final int ARRAY_SIZE = 3;
+        final int ARRAY_SIZE = 20;
         int[] list = new int[ARRAY_SIZE];
 
-        prIntList(list);
-
         //populate list randomly
-        populate(list, 1);
+        populate(list, 3);
 
         prIntList(list);
 
@@ -65,21 +64,33 @@ public class Main {
             case(1)://In Order
                 for(int i = 0; i < list.length; i++)
                 {
+                    //increment by [0,17)
                     int randomNum = ThreadLocalRandom.current().nextInt(0,17);
                     if( i == 0 ){ list[i] = randomNum; }
                     else{ list[i] = list[i-1] + randomNum; }
                 }
                 break;
             case(2)://Reverse Order//TODO: get this straight
-                int randStart = ThreadLocalRandom.current().nextInt();//TODO:start around 100,000 for real code
+                int randStart = ThreadLocalRandom.current().nextInt(100, 201);//TODO:start around 100,000 for real code
                 for(int i = 0; i < list.length; i++)
                 {
-                    int randomNum = ThreadLocalRandom.current().nextInt(0,17);
+                    //decrement by [10,33)
+                    int randomNum = ThreadLocalRandom.current().nextInt(10,33);
                     if( i == 0 ){ list[i] = randStart - randomNum; }
                     else{ list[i] = list[i-1] - randomNum; }
                 }
                 break;
             case(3)://Almost Order
+                populate(list, 1);//populates in order first
+                prIntList(list);
+                for(int i = 0; i < list.length; i++)
+                {
+                    int randomNum = ThreadLocalRandom.current().nextInt(0,101);
+                    if(randomNum <= 30) //30 percent chance to mess it up
+                    {
+                        list[i] = randomNum;
+                    }
+                }
                 break;
             case(4)://Random Order
                 for(int i = 0; i < list.length; i++)
@@ -89,8 +100,7 @@ public class Main {
                 }
                 break;
             default:
-                break;
-
+                throw new IllegalArgumentException(which + " is not a valid sort");
         }
     }
 
