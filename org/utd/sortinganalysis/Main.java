@@ -2,6 +2,7 @@ package org.utd.sortinganalysis;
 
 import java.lang.System.Logger;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) 
@@ -43,7 +44,7 @@ public class Main {
         prIntList(list);
 
         //call sort
-        sort(list, 1);
+        sort(list, 5);
 
         prIntList(list);
     }
@@ -82,7 +83,6 @@ public class Main {
                 break;
             case(3)://Almost Order
                 populate(list, 1);//populates in order first
-                prIntList(list);
                 for(int i = 0; i < list.length; i++)
                 {
                     int randomNum = ThreadLocalRandom.current().nextInt(0,101);
@@ -121,7 +121,11 @@ public class Main {
                 MergeSort.mergeSort(list);
                 break;
             case(5):
-                //HeapSort.heapSort(list);
+                Integer[] boxing = Arrays.stream(list).boxed().toArray(Integer[]::new);
+                HeapSort.heapSort(boxing);
+                for(int i = 0; i < boxing.length; i++) { list[i] = boxing[i]; }
+                //couldn't really figure out a better approach, but in the end it's still O(N) so w/e
+                //System.arraycopy(boxing, 0, list, 0, boxing.length);
                 break;
             case(6):
                 RadixSort.radixsort(list, 0);
