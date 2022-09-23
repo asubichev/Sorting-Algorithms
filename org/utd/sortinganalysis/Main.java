@@ -43,7 +43,7 @@ public class Main {
         prIntList(list);
 
         //call sort
-        MergeSort.mergeSort(list);
+        sort(list, 1);
 
         prIntList(list);
     }
@@ -100,9 +100,34 @@ public class Main {
                 }
                 break;
             default:
-                throw new IllegalArgumentException(which + " is not a valid sort");
+                throw new IllegalArgumentException(which + " is not associated with a valid sort");
         }
     }
 
-
+    public static void sort(int[] list, int which)
+    {
+        switch(which)
+        {
+            case(1):
+                InsertionSort.insertionSort(list);
+                break;
+            case(2):
+                SelectionSort.selectionSort(list);
+                break;
+            case(3):
+                QuickSort.quickSort(list);
+                break;
+            case(4):
+                MergeSort.mergeSort(list);
+                break;
+            case(5):
+                //HeapSort.heapSort(list);
+                break;
+            case(6):
+                RadixSort.radixsort(list, 0);
+                break;
+            default:
+                throw new IllegalArgumentException(which + "is not associated with a valid sort");
+        }
+    }
 }
