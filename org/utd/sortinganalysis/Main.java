@@ -91,8 +91,9 @@ public class Main {
         }
     }
 
-    public static void sort(int[] list, int which)
+    public static int[] sort(int[] list, int which)
     {
+        int[] stat = {0, 0};
         switch(which)
         {
             case(1):
@@ -120,5 +121,6 @@ public class Main {
             default:
                 throw new IllegalArgumentException(which + "is not associated with a valid sort");
         }
+        return stat;
     }
 }
