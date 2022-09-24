@@ -101,7 +101,7 @@ public class Main {
                 stat = InsertionSort.insertionSort(list);
                 break;
             case(2):
-                SelectionSort.selectionSort(list);
+                stat = SelectionSort.selectionSort(list);
                 break;
             case(3):
                 QuickSort.quickSort(list);
