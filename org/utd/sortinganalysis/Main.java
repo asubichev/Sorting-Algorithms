@@ -7,6 +7,9 @@ public class Main {
     public static void main(String[] args) 
     {
         /**TODO:
+         * QuickSort check comparisons, should be like MergeSort
+         * or maybe it's right
+         * 
          * Have the sorts return comparisons and movements
          * 
          * Implement timing function: http://www.baeldung.com/java-measure-elapsed-time
@@ -105,6 +108,9 @@ public class Main {
                 break;
             case(3):
                 QuickSort.quickSort(list);
+                //not great, but static elements will reset upon sort again
+                stat[0] = QuickSort.getComparisons();
+                stat[1] = QuickSort.getMovements();
                 break;
             case(4):
                 MergeSort.mergeSort(list);

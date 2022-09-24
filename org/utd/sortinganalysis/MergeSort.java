@@ -2,16 +2,21 @@ package org.utd.sortinganalysis;
 
 public class MergeSort {
 	/**	The method for sorting the numbers */
+	private static int comparisons = 0;
+	private static int movements = 0;
+
 	public static void mergeSort(int[] list) {
 		if (list.length > 1) {
 			//	Merge sort the first half
 			int [] firstHalf = new int[list.length / 2];
+			movements += list.length / 2; // amount of elements we copying
 			System.arraycopy(list, 0, firstHalf, 0, list.length / 2);
 			mergeSort(firstHalf);
 			
 			//Merge sort the second half
 			int secondHalfLength = list.length - list.length / 2;
 			int[] secondHalf = new int[secondHalfLength];
+			movements += secondHalfLength;
 			System.arraycopy(list, list.length / 2, 
 				secondHalf, 0, secondHalfLength);
 			mergeSort(secondHalf);
@@ -27,19 +32,26 @@ public class MergeSort {
 		int current2 = 0; // Current index in list2
 		int current3 = 0; // Current index in temp
 		
+		comparisons+=2;
 		while (current1 < list1.length && current2 < list2.length) {
+
+			comparisons++; movements++; //something WILL move
 			if (list1[current1] < list2[current2])
 				temp[current3++] = list1[current1++];
 			else
 				temp[current3++] = list2[current2++];
+
+			comparisons+=2;
 		}
 		
-		while (current1 < list1.length)
-			temp[current3++] = list1[current1++];
+		comparisons++;
+		while (current1 < list1.length) { movements++; temp[current3++] = list1[current1++]; }
 		
-		while (current2 < list2.length)
-			temp[current3++] = list2[current2++];
+		while (current2 < list2.length) { movements++; temp[current3++] = list2[current2++]; }
 	}
+
+	public static int getComparisons() { return comparisons; }
+	public static int getMovement() { return movements; }
 	
 	
 	// A test method *
