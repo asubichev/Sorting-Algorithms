@@ -7,6 +7,16 @@ public class Main {
     public static void main(String[] args) 
     {
         /**TODO:
+         * radix
+         * 
+         * might need to reset static class (merge, heap, radix) variables after sort complete
+         * 
+         * The static method getComparisons() from the type Heap<E> should be accessed in a static way
+         * in HeapSort 
+         * 
+         * QuickSort check comparisons, should be like MergeSort
+         * or maybe it's right
+         * 
          * Have the sorts return comparisons and movements
          * 
          * Implement timing function: http://www.baeldung.com/java-measure-elapsed-time
@@ -23,15 +33,16 @@ public class Main {
          *          * Total time
         */
         final int ARRAY_SIZE = 20;
-        int[] list = new int[ARRAY_SIZE];
+        //int[] list = new int[ARRAY_SIZE];
+        int[] list = {5,7,9,1,2};
 
         //populate list randomly
-        populate(list, 3);
+        //populate(list, 3);
 
         prIntList(list);
 
         //call sort
-        sort(list, 5);
+        int[] oo = sort(list, 1);
 
         prIntList(list);
     }
@@ -91,18 +102,22 @@ public class Main {
         }
     }
 
-    public static void sort(int[] list, int which)
+    public static int[] sort(int[] list, int which)
     {
+        int[] stat = {0, 0};
         switch(which)
         {
             case(1):
-                InsertionSort.insertionSort(list);
+                stat = InsertionSort.insertionSort(list);
                 break;
             case(2):
-                SelectionSort.selectionSort(list);
+                stat = SelectionSort.selectionSort(list);
                 break;
             case(3):
                 QuickSort.quickSort(list);
+                //not great, but static elements will reset upon sort again
+                stat[0] = QuickSort.getComparisons();
+                stat[1] = QuickSort.getMovements();
                 break;
             case(4):
                 MergeSort.mergeSort(list);
@@ -120,5 +135,6 @@ public class Main {
             default:
                 throw new IllegalArgumentException(which + "is not associated with a valid sort");
         }
+        return stat;
     }
 }

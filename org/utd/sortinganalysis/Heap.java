@@ -2,6 +2,9 @@ package org.utd.sortinganalysis;
 
 public class Heap<E extends Comparable<E>> {
 	private java.util.ArrayList<E> list = new java.util.ArrayList<>();
+
+	private static int comparisons = 0;
+	private static int movements = 0;
 	
 	/** Create a default heap */
 	public Heap() {
@@ -18,11 +21,15 @@ public class Heap<E extends Comparable<E>> {
 		list.add(newObject); //	Append to the heap
 		int currentIndex = list.size()-1; // The index of the last node
 		
+		//this is just checking if size of list is 0; not an element comparison
 		while (currentIndex > 0) {
 			int parentIndex = (currentIndex -1)/2;
+
+			comparisons++;
 			//	Swap if the current object is greater than its parent
 			if (list.get(currentIndex).compareTo(
 					list.get(parentIndex)) > 0) {
+				movements++;
 				E temp = list.get(currentIndex);
 				list.set(currentIndex, list.get(parentIndex));
 				list.set(parentIndex, temp);
@@ -38,6 +45,8 @@ public class Heap<E extends Comparable<E>> {
 	public E remove() {
 		if (list.size() == 0) return null;
 		
+		//despite this not swapping two elements, i'll count this
+		movements++;
 		E removedObject = list.get(0);
 		list.set(0, list.get(list.size()-1));
 		list.remove(list.size()-1);
@@ -52,6 +61,7 @@ public class Heap<E extends Comparable<E>> {
 				break; // The tree is a heap
 			int maxIndex = leftChildIndex;
 			if (rightChildIndex < list.size()) {
+				comparisons++;
 				if (list.get(maxIndex).compareTo( 
 						list.get(rightChildIndex)) < 0) {
 					maxIndex = rightChildIndex;
@@ -59,8 +69,10 @@ public class Heap<E extends Comparable<E>> {
 			}
 			
 			//	Swap if the current node is less than the maximum
+			comparisons++;
 			if (list.get(currentIndex).compareTo( 
 					list.get(maxIndex)) < 0) {
+				movements++;
 				E temp = list.get(maxIndex);
 				list.set(maxIndex, list.get(currentIndex));
 				list.set(currentIndex, temp);
@@ -77,4 +89,7 @@ public class Heap<E extends Comparable<E>> {
 	public int getSize() {
 		return list.size();
 	}
+
+	public static int getComparisons() { return comparisons; }
+	public static int getMovement() { return movements; }
 }
