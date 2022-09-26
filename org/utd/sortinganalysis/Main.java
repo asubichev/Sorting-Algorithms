@@ -7,6 +7,13 @@ public class Main {
     public static void main(String[] args) 
     {
         /**TODO:
+         * radix
+         * 
+         * might need to reset static class (merge, heap, radix) variables after sort complete
+         * 
+         * The static method getComparisons() from the type Heap<E> should be accessed in a static way
+         * in HeapSort 
+         * 
          * QuickSort check comparisons, should be like MergeSort
          * or maybe it's right
          * 

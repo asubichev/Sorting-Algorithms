@@ -1,7 +1,7 @@
 package org.utd.sortinganalysis;
 public class HeapSort {
 	/** Heap sort method */
-	public static <E extends Comparable<E>> void heapSort(E[] list) {
+	public static <E extends Comparable<E>> int[] heapSort(E[] list) {
 		//	Create a Heap of integers
 		Heap<E> heap = new Heap<>();
 		
@@ -12,6 +12,8 @@ public class HeapSort {
 		//	Remove elements from the heap
 		for (int i = list.length -1; i >= 0; i--)
 			list[i] = heap.remove();
+
+		return (new int[]{heap.getComparisons(), heap.getMovement()});
 	}
 	
 	
