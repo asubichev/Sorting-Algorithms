@@ -33,16 +33,15 @@ public class Main {
          *          * Total time
         */
         final int ARRAY_SIZE = 20;
-        //int[] list = new int[ARRAY_SIZE];
-        int[] list = {5,7,9,1,2};
+        int[] list = new int[ARRAY_SIZE];
 
         //populate list randomly
-        //populate(list, 3);
+        populate(list, 3);
 
         prIntList(list);
 
         //call sort
-        int[] oo = sort(list, 1);
+        sort(list, 5);
 
         prIntList(list);
     }
@@ -102,22 +101,18 @@ public class Main {
         }
     }
 
-    public static int[] sort(int[] list, int which)
+    public static void sort(int[] list, int which)
     {
-        int[] stat = {0, 0};
         switch(which)
         {
             case(1):
-                stat = InsertionSort.insertionSort(list);
+                InsertionSort.insertionSort(list);
                 break;
             case(2):
-                stat = SelectionSort.selectionSort(list);
+                SelectionSort.selectionSort(list);
                 break;
             case(3):
                 QuickSort.quickSort(list);
-                //not great, but static elements will reset upon sort again
-                stat[0] = QuickSort.getComparisons();
-                stat[1] = QuickSort.getMovements();
                 break;
             case(4):
                 MergeSort.mergeSort(list);
@@ -135,6 +130,5 @@ public class Main {
             default:
                 throw new IllegalArgumentException(which + "is not associated with a valid sort");
         }
-        return stat;
     }
 }
