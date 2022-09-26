@@ -2,6 +2,7 @@ package org.utd.sortinganalysis;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) 
@@ -24,28 +25,35 @@ public class Main {
          *          * Total time
         */
         final int ARRAY_SIZE = 20;
-        int[] list = new int[ARRAY_SIZE];
 
         int listOrder = 0;
         int listSize = 0;
         int sortType = 0;
+        Scanner in = new Scanner(System.in);
         System.out.print("1.InOrder\n2.ReverseOrder\n3.AlmostOrder\n4.RandomOrder\n");
         System.out.print("Please pick the order of the list: ");
 
         //stdin
         //listOrder = stdin
+        listOrder = in.nextInt();
 
         System.out.print("\n1.5000\n2.15000\n3.50000\n");
         System.out.print("Please select the size of the list: ");
 
         //stdin
         //listSize = stdin
+        listSize = in.nextInt();
 
         System.out.print("\n1.Insertion Sort\n2.Selection Sort\n3.Quick Sort\n4.Merge Sort\n5.Heap Sort\n6.Radix Sort\n");
         System.out.print("Please select the sorting algorithm to sort with: ");
 
         //stdin
         //sortType = stdin
+        sortType = in.nextInt();
+
+        int[] list = new int[listSize];
+        populate(list, listOrder);
+        sort(list, sortType);
     }
 
     public static void prIntList(int[] coll)
