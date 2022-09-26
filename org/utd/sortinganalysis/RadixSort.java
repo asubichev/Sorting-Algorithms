@@ -53,7 +53,7 @@ class RadixSort {
 	}
 
 	public static int getComparisons() { return comparisons; }
-	public static int getMovement() { return movements; }
+	public static int getMovements() { return movements; }
 	
 	// public static void main(String[] args) {
 	// 	int arr[] = { 170, 45, 75, 90, 802, 24, 2, 66 };

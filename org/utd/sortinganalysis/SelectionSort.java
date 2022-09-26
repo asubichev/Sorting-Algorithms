@@ -27,6 +27,6 @@ public class SelectionSort {
 				list[i] = currentMin;
 			}
 		}
-		return (new int[]{comparison, movement}); 
+		return (new int[]{comparison, movement, 0}); 
 	}
 }

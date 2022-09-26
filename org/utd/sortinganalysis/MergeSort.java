@@ -51,7 +51,7 @@ public class MergeSort {
 	}
 
 	public static int getComparisons() { return comparisons; }
-	public static int getMovement() { return movements; }
+	public static int getMovements() { return movements; }
 	
 	
 	// A test method *

@@ -13,7 +13,7 @@ public class HeapSort {
 		for (int i = list.length -1; i >= 0; i--)
 			list[i] = heap.remove();
 
-		return (new int[]{Heap.getComparisons(), Heap.getMovement()});
+		return (new int[]{Heap.getComparisons(), Heap.getMovements()});
 	}
 	
 	
