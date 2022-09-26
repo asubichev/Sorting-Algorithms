@@ -25,6 +25,6 @@ public class InsertionSort {
 		}
 		//I believe I HAVE to use "new" here, since
 		//I'm not sure if there's a way to just return [elem1, elem2]
-		return (new int[]{comparison, movement});
+		return (new int[]{comparison, movement, 0});
 	}
 }

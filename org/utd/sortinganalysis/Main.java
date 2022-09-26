@@ -10,14 +10,12 @@ public class Main {
          * QuickSort check comparisons, should be like MergeSort
          * or maybe it's right
          * 
-         * Have the sorts return comparisons and movements
-         * 
-         * Implement timing function: http://www.baeldung.com/java-measure-elapsed-time
-         * Increase sizes of lists from 3-5 to 5-15k
          * Implement user input to control:
          *          * Order
          *          * List Size
          *          * Sort Type
+         * 
+         * Increase sizes of lists from 3-5 to 5-15k
          * 
          * Create output control:
          *          * 3 input variables
@@ -36,7 +34,7 @@ public class Main {
         //call sort
         sort(list, 5);
 
-        prIntList(list);
+        // prIntList(list);
     }
 
     public static void prIntList(int[] coll)
@@ -96,29 +94,41 @@ public class Main {
 
     public static int[] sort(int[] list, int which)
     {
-        int[] stats = {0,0};//comp,mvmt,time(ms)
+        int[] stats = {0,0,0};//comp,mvmt,time(ms)
+        long start;
+        long finish;
         switch(which)
         {
             case(1):
+                start = System.nanoTime();
                 stats = InsertionSort.insertionSort(list);
+                finish = System.nanoTime();
                 break;
             case(2):
+                start = System.nanoTime();
                 stats = SelectionSort.selectionSort(list);
+                finish = System.nanoTime();
                 break;
             case(3):
+                start = System.nanoTime();
                 QuickSort.quickSort(list);
+                finish = System.nanoTime();
                 stats[0] = QuickSort.getComparisons();
                 stats[1] = QuickSort.getMovements();
                 //TODO: perhaps I should reset static vars to 0 here
                 break;
             case(4):
+                start = System.nanoTime();
                 MergeSort.mergeSort(list);
+                finish = System.nanoTime();
                 stats[0] = MergeSort.getComparisons();
                 stats[1] = MergeSort.getMovements();
                 break;
             case(5):
                 Integer[] boxing = Arrays.stream(list).boxed().toArray(Integer[]::new);
+                start = System.nanoTime();
                 HeapSort.heapSort(boxing);
+                finish = System.nanoTime();
                 for(int i = 0; i < boxing.length; i++) { list[i] = boxing[i]; }
                 stats[0] = Heap.getComparisons();
                 stats[1] = Heap.getMovements();
@@ -126,13 +136,17 @@ public class Main {
                 //System.arraycopy(boxing, 0, list, 0, boxing.length);
                 break;
             case(6):
+                start = System.nanoTime();
                 RadixSort.radixsort(list, 0);
+                finish = System.nanoTime();
                 stats[0] = RadixSort.getComparisons();
                 stats[1] = RadixSort.getMovements();
                 break;
             default:
                 throw new IllegalArgumentException(which + "is not associated with a valid sort");
         }
+        stats[2] = Math.toIntExact(finish - start);
+        System.out.println("ns elapsed: " + stats[2]);//convert to x.xx * 10^6
         return stats;
     }
 }
