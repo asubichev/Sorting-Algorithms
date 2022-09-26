@@ -7,12 +7,7 @@ public class Main {
     public static void main(String[] args) 
     {
         /**TODO:
-         * radix
-         * 
          * might need to reset static class (merge, heap, radix) variables after sort complete
-         * 
-         * The static method getComparisons() from the type Heap<E> should be accessed in a static way
-         * in HeapSort 
          * 
          * QuickSort check comparisons, should be like MergeSort
          * or maybe it's right
@@ -101,8 +96,9 @@ public class Main {
         }
     }
 
-    public static void sort(int[] list, int which)
+    public static int[] sort(int[] list, int which)
     {
+        int[] stats = {0,0,0};//comp,mvmt,time(ms)
         switch(which)
         {
             case(1):
@@ -130,5 +126,6 @@ public class Main {
             default:
                 throw new IllegalArgumentException(which + "is not associated with a valid sort");
         }
+        return stats;
     }
 }
