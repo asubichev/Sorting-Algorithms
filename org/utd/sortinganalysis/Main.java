@@ -7,8 +7,6 @@ public class Main {
     public static void main(String[] args) 
     {
         /**TODO:
-         * might need to reset static class (merge, heap, radix) variables after sort complete
-         * 
          * QuickSort check comparisons, should be like MergeSort
          * or maybe it's right
          * 
@@ -98,30 +96,39 @@ public class Main {
 
     public static int[] sort(int[] list, int which)
     {
-        int[] stats = {0,0,0};//comp,mvmt,time(ms)
+        int[] stats = {0,0};//comp,mvmt,time(ms)
         switch(which)
         {
             case(1):
-                InsertionSort.insertionSort(list);
+                stats = InsertionSort.insertionSort(list);
                 break;
             case(2):
-                SelectionSort.selectionSort(list);
+                stats = SelectionSort.selectionSort(list);
                 break;
             case(3):
                 QuickSort.quickSort(list);
+                stats[0] = QuickSort.getComparisons();
+                stats[1] = QuickSort.getMovements();
+                //TODO: perhaps I should reset static vars to 0 here
                 break;
             case(4):
                 MergeSort.mergeSort(list);
+                stats[0] = MergeSort.getComparisons();
+                stats[1] = MergeSort.getMovements();
                 break;
             case(5):
                 Integer[] boxing = Arrays.stream(list).boxed().toArray(Integer[]::new);
                 HeapSort.heapSort(boxing);
                 for(int i = 0; i < boxing.length; i++) { list[i] = boxing[i]; }
+                stats[0] = Heap.getComparisons();
+                stats[1] = Heap.getMovements();
                 //couldn't really figure out a better approach, but in the end it's still O(N) so w/e
                 //System.arraycopy(boxing, 0, list, 0, boxing.length);
                 break;
             case(6):
                 RadixSort.radixsort(list, 0);
+                stats[0] = RadixSort.getComparisons();
+                stats[1] = RadixSort.getMovements();
                 break;
             default:
                 throw new IllegalArgumentException(which + "is not associated with a valid sort");

@@ -91,5 +91,5 @@ public class Heap<E extends Comparable<E>> {
 	}
 
 	public static int getComparisons() { return comparisons; }
-	public static int getMovement() { return movements; }
+	public static int getMovements() { return movements; }
 }
