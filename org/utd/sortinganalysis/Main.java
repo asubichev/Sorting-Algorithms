@@ -2,6 +2,7 @@ package org.utd.sortinganalysis;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) 
@@ -24,17 +25,38 @@ public class Main {
          *          * Total time
         */
         final int ARRAY_SIZE = 20;
-        int[] list = new int[ARRAY_SIZE];
 
-        //populate list randomly
-        populate(list, 3);
+        int listOrder = 0;
+        int listSize = 0;
+        int sortType = 0;
+        Scanner in = new Scanner(System.in);
+        System.out.print("1.InOrder\n2.ReverseOrder\n3.AlmostOrder\n4.RandomOrder\n");
+        System.out.print("Please pick the order of the list: ");
 
-        prIntList(list);
+        //stdin
+        //listOrder = stdin
+        listOrder = in.nextInt();
 
-        //call sort
-        sort(list, 5);
+        System.out.print("\n1.5000\n2.15000\n3.50000\n");
+        System.out.print("Please select the size of the list: ");
 
-        // prIntList(list);
+        //stdin
+        //listSize = stdin
+        listSize = in.nextInt();
+
+        System.out.print("\n1.Insertion Sort\n2.Selection Sort\n3.Quick Sort\n4.Merge Sort\n5.Heap Sort\n6.Radix Sort\n");
+        System.out.print("Please select the sorting algorithm to sort with: ");
+
+        //stdin
+        //sortType = stdin
+        sortType = in.nextInt();
+
+        int[] list = new int[giveSize(listSize)];
+        populate(list, listOrder);
+        int[] stats = new int[3];
+        stats = sort(list, sortType);
+
+        printResults(listSize, listOrder, sortType, stats);
     }
 
     public static void prIntList(int[] coll)
@@ -146,7 +168,56 @@ public class Main {
                 throw new IllegalArgumentException(which + "is not associated with a valid sort");
         }
         stats[2] = Math.toIntExact(finish - start);
-        System.out.println("ns elapsed: " + stats[2]);//convert to x.xx * 10^6
         return stats;
+    }
+
+    public static int giveSize(int x)
+    {
+        switch(x)
+        {
+            case(1):
+                return 5;
+            case(2):
+                return 10;
+            case(3):
+                return 15;
+            default:
+                throw new IllegalArgumentException(x + " is not a valid number [1,3]");
+        }
+    }
+
+    public static void printResults(int size, int order, int sort, int[] stats)
+    {
+        String out = "\nExperimental Results:\nInput Size: ";
+        switch(size)
+        {
+            case(1): out += 5000; break;
+            case(2): out += 15000; break;
+            case(3): out += 50000; break;
+            default:
+        }
+        out += "\nData Type: ";
+        switch(order)
+        {
+            case(1): out += "In Order"; break;
+            case(2): out += "Reverse Order"; break;
+            case(3): out += "Almost Order"; break;
+            case(4): out += "Random Order"; break;
+            default:
+        }
+        out += "\nSort: ";
+        switch(sort)
+        {
+            case(1): out += "Insertion"; break;
+            case(2): out += "Selection"; break;
+            case(3): out += "Quick"; break;
+            case(4): out += "Merge"; break;
+            case(5): out += "Heap"; break;
+            case(6): out += "Radix"; break;
+            default:
+        }
+        out += "\nComparisons: " + stats[0] + "\nMovements: " + stats[1] + "\nTotal Time: " + stats[2] + " ns\n";
+        System.out.print(out);
+        // System.out.printf("%e", stats[2]); can't format integer in e form
     }
 }
