@@ -53,7 +53,11 @@ public class Main {
 
         int[] list = new int[giveSize(listSize)];
         populate(list, listOrder);
-        sort(list, sortType);
+        int[] stats = new int[3];
+        stats = sort(list, sortType);
+
+        printResults(listSize, listOrder, sortType, stats);
+        System.out.println("ns elapsed: " + stats[2]);//convert to x.xx * 10^6
     }
 
     public static void prIntList(int[] coll)
@@ -165,7 +169,6 @@ public class Main {
                 throw new IllegalArgumentException(which + "is not associated with a valid sort");
         }
         stats[2] = Math.toIntExact(finish - start);
-        System.out.println("ns elapsed: " + stats[2]);//convert to x.xx * 10^6
         return stats;
     }
 
@@ -182,5 +185,39 @@ public class Main {
             default:
                 throw new IllegalArgumentException(x + " is not a valid number [1,3]");
         }
+    }
+
+    public static void printResults(int size, int order, int sort, int[] stats)
+    {
+        String out = "\nExperimental Results:\nInput Size: ";
+        switch(size)
+        {
+            case(1): out += 5000; break;
+            case(2): out += 15000; break;
+            case(3): out += 50000; break;
+            default:
+        }
+        out += "\nData Type: ";
+        switch(order)
+        {
+            case(1): out += "In Order"; break;
+            case(2): out += "Reverse Order"; break;
+            case(3): out += "Almost Order"; break;
+            case(4): out += "Random Order"; break;
+            default:
+        }
+        out += "\nSort: ";
+        switch(sort)
+        {
+            case(1): out += "Insertion"; break;
+            case(2): out += "Selection"; break;
+            case(3): out += "Quick"; break;
+            case(4): out += "Merge"; break;
+            case(5): out += "Heap"; break;
+            case(6): out += "Radix"; break;
+            default:
+        }
+        out += "\nComparisons: " + stats[0] + "\nMovements: " + stats[1] + "\nTotal Time(ns): " + stats[2];
+        System.out.println(out);
     }
 }
