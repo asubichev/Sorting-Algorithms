@@ -10,9 +10,9 @@ public class QuickSort {
 	}
 	
 	public static void quickSort(int[] list, int first, int last) {
-		comparisons++;
+		//comparisons++; comparing indeces, not list values
 		if (last > first) {
-			int pivotIndex = partition(list, first, last);
+			int pivotIndex = partition(list, (first+last)/2, last); //sue me
 			quickSort(list, first, pivotIndex -1);
 			quickSort(list, pivotIndex + 1, last);
 		}
@@ -24,15 +24,15 @@ public class QuickSort {
 		int low = first + 1; // Index for forward search
 		int high = last; //Index for backward search
 		
-		comparisons++;
+		//comparisons++;
 		while (high > low) {
 			// Search forward from left
-			comparisons+=2;
-			while (low <= high && list[low] <= pivot) { comparisons+=2; low++; }
+			comparisons++;
+			while (low <= high && list[low] <= pivot) { comparisons++; low++; }
 			
 			// Search backward from right
-			comparisons+=2;
-			while (low <= high && list[high] > pivot) { comparisons+=2; high--; }
+			comparisons++;
+			while (low <= high && list[high] > pivot) { comparisons++; high--; }
 			
 			//	Swap two elements in the list
 			comparisons++;
@@ -44,8 +44,8 @@ public class QuickSort {
 			}
 		}
 		
-		comparisons+=2;
-		while (high > first && list[high] >= pivot) { comparisons+=2; high--; }
+		comparisons++;
+		while (high > first && list[high] >= pivot) { comparisons++; high--; }
 		
 		//	Swap pivot with list[high]
 		comparisons++;
