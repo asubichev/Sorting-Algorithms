@@ -11,6 +11,7 @@ public class InsertionSort {
 			 */
 			int currentElement = list[i];
 			int k;
+			if(i >= 1) comparison++;
 			for (k = i-1; k>= 0 && list[k] > currentElement; k--, comparison++) {
 				movement++;//moving previous element one over
 				list[k+1] = list[k];

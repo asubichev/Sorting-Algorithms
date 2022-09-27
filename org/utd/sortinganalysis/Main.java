@@ -57,7 +57,6 @@ public class Main {
         stats = sort(list, sortType);
 
         printResults(listSize, listOrder, sortType, stats);
-        System.out.println("ns elapsed: " + stats[2]);//convert to x.xx * 10^6
     }
 
     public static void prIntList(int[] coll)
@@ -217,7 +216,8 @@ public class Main {
             case(6): out += "Radix"; break;
             default:
         }
-        out += "\nComparisons: " + stats[0] + "\nMovements: " + stats[1] + "\nTotal Time(ns): " + stats[2];
-        System.out.println(out);
+        out += "\nComparisons: " + stats[0] + "\nMovements: " + stats[1] + "\nTotal Time: " + stats[2] + " ns\n";
+        System.out.print(out);
+        // System.out.printf("%e", stats[2]); can't format integer in e form
     }
 }
