@@ -51,7 +51,7 @@ public class Main {
         //sortType = stdin
         sortType = in.nextInt();
 
-        int[] list = new int[listSize];
+        int[] list = new int[giveSize(listSize)];
         populate(list, listOrder);
         sort(list, sortType);
     }
@@ -167,5 +167,20 @@ public class Main {
         stats[2] = Math.toIntExact(finish - start);
         System.out.println("ns elapsed: " + stats[2]);//convert to x.xx * 10^6
         return stats;
+    }
+
+    public static int giveSize(int x)
+    {
+        switch(x)
+        {
+            case(1):
+                return 5;
+            case(2):
+                return 10;
+            case(3):
+                return 15;
+            default:
+                throw new IllegalArgumentException(x + " is not a valid number [1,3]");
+        }
     }
 }
