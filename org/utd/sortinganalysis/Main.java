@@ -81,8 +81,8 @@ public class Main {
                     else{ list[i] = list[i-1] + randomNum; }
                 }
                 break;
-            case(2)://Reverse Order//TODO: get this straight
-                int randStart = ThreadLocalRandom.current().nextInt(100, 201);//TODO:start around 100,000 for real code
+            case(2)://Reverse Order 
+                int randStart = ThreadLocalRandom.current().nextInt(1000000, 2010000);
                 for(int i = 0; i < list.length; i++)
                 {
                     //decrement by [10,33)
