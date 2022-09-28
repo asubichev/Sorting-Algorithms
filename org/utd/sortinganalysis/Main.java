@@ -81,8 +81,8 @@ public class Main {
                     else{ list[i] = list[i-1] + randomNum; }
                 }
                 break;
-            case(2)://Reverse Order//TODO: get this straight
-                int randStart = ThreadLocalRandom.current().nextInt(100, 201);//TODO:start around 100,000 for real code
+            case(2)://Reverse Order 
+                int randStart = ThreadLocalRandom.current().nextInt(1000000, 2010000);
                 for(int i = 0; i < list.length; i++)
                 {
                     //decrement by [10,33)
@@ -159,7 +159,7 @@ public class Main {
                 break;
             case(6):
                 start = System.nanoTime();
-                RadixSort.radixsort(list, 0);
+                RadixSort.radixsort(list, list.length);
                 finish = System.nanoTime();
                 stats[0] = RadixSort.getComparisons();
                 stats[1] = RadixSort.getMovements();
@@ -176,13 +176,13 @@ public class Main {
         switch(x)
         {
             case(1):
-                return 5;
+                return 5000;
             case(2):
-                return 10;
+                return 15000;
             case(3):
-                return 15;
+                return 50000;
             default:
-                throw new IllegalArgumentException(x + " is not a valid number [1,3]");
+                throw new IllegalArgumentException(x + " is not a valid number for size [1,3]");
         }
     }
 

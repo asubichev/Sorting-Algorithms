@@ -7,14 +7,14 @@ class RadixSort {
 	private static int comparisons = 0;
 	private static int movements = 0;
 
-	//looks like minimal comparisons/movements, but there are a lot of modifications to count[]
+	//looks like minimal comparisons/movements, but there are a lot of modifications to arr[]
 
 	static int getMax(int arr[], int n) {
 		int mx = arr[0];
 		comparisons+=n;
 		for (int i = 1; i < n; i++)
 		{
-			if (arr[i] > mx) { movements++; mx = arr[i]; }
+			if (arr[i] > mx) { mx = arr[i]; }
 		}
 		return mx;
 	}

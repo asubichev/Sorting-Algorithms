@@ -11,7 +11,7 @@ public class SelectionSort {
 			int currentMinIndex = i;
 			
 			for (int j = i+1; j < list.length; j++) {
-				comparison++;
+				//comparison++; not comparing two elements
 				if (currentMin > list[j]) {
 					movement++;
 					currentMin = list[j];
