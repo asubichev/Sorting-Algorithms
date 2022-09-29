@@ -7,23 +7,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) 
     {
-        /**TODO:
-         * QuickSort check comparisons, should be like MergeSort
-         * or maybe it's right
-         * 
-         * Implement user input to control:
-         *          * Order
-         *          * List Size
-         *          * Sort Type
-         * 
-         * Increase sizes of lists from 3-5 to 5-15k
-         * 
-         * Create output control:
-         *          * 3 input variables
-         *          * Comparisons
-         *          * Movements
-         *          * Total time
-        */
+        /**
+         * General Control Flow:
+         * User inputs order, size, and sort
+         * Perform sort
+         * Output stats
+         * Exit
+         */
         final int ARRAY_SIZE = 20;
 
         int listOrder = 0;
